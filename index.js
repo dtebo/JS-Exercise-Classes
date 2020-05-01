@@ -163,6 +163,11 @@ class Instructor extends Lambdasian{
   grade(student, subject){
     return `${student.name} receives a perfect score on ${subject}`;
   }
+
+  /* stretch goal 2! */
+  updateGrade(student){
+    student.grade -= Math.round(Math.random() * 100);
+  }
 }
 
 /*
@@ -184,6 +189,7 @@ class Student extends Lambdasian {
   constructor(stObj){
     super(stObj);
     this.name = stObj.name;
+    this.grade = 80; /* stretch goal 1! */
     this.previousBackground = stObj.previousBackground;
     this.className = stObj.className;
     this.favSubjects = stObj.favSubjects;
@@ -199,6 +205,13 @@ class Student extends Lambdasian {
 
   sprintChallenge(subject){
     return `${this.name} has begun a sprint challenge on ${subject}`;
+  }
+
+  /* stretch goal 3! */
+  graduate(student){
+    if(student.grade > 70){
+      return `Congratulations ${this.name}! You have officially graduated from Lambda School with a grade of ${student.grade}%! Go get em!`;
+    }
   }
 }
 
@@ -227,8 +240,8 @@ class ProjectManager extends Instructor {
     return `${this.name} announces to ${channel}, @${channel} standy times!`;
   }
 
-  debugsCode(stObj, subject){
-    return `${this.name} debugs ${stObj.name}'s code on ${subject}`;
+  debugsCode(student, subject){
+    return `${this.name} debugs ${student.name}'s code on ${subject}`;
   }
 }
 
