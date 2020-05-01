@@ -79,7 +79,35 @@ class Person {
 */
 
 class Car {
+  constructor(model, milesPerGallon){
+    this.tank = 0;
+    this.odometer = 0;
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+  }
 
+  fill(gallons){
+    this.tank += gallons;
+  }
+
+  drive(distance){
+    const maxRange = this.tank * this.milesPerGallon;
+
+    if(this.tank > 0){
+      if(distance > maxRange){
+        this.tank = 0; /* we have exceeded our range */
+        this.odometer += maxRange; /* add our maximum traveled range to the odometer */
+
+        return `I ran out of gas at ${this.odometer} miles!`;
+      }
+      else{
+        this.odometer += distance; /* increase our odometer by the miles we traveled */
+      }
+    }
+    
+    this.tank -= distance / this.milesPerGallon; /* subtract the gas used from the tank */
+  }
+    
 }
 
 /*
